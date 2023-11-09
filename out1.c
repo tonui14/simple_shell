@@ -8,15 +8,15 @@ int main ()
         ssize_t nread;
         nread = getline(&in, &len, stdin);
 
-        for(nread == -1)
+        while(nread == -1)
         {
                 printf("\n");
-                free (*in);
+                free (in);
                 break;
         }
-        if (in [read -1] == '\n')
+        if (in [nread -1] == '\n')
         {
-                in [read -1 ] = '\0';
+                in [nread -1 ] = '\0';
         }
         pid_t baby_pid = fork();
         if (baby_pid < 0)
@@ -35,6 +35,6 @@ int main ()
 		int moment;
 		waitpid(baby_pid, &moment, 0);
 	}
-	free ( *in);
-	return (0)
+	free (in);
+	return (0);
 }
