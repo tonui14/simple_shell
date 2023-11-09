@@ -1,18 +1,17 @@
 #include "header.h"
 
 /**
- * main = is the entry point
+ * main - is the entry point
  *
- * Return: Shell $
+ * Return: 0 upon succesful execution
  **/
 
-int main()
+int main(void)
 {
-	char *out = ( "(Shell)$");
-	{
-		printf("%s", out);
-		fflush(stdout);
-		return (0);
-	}
+	char *out = ("(Shell)$");
+
+	printf("%s", out);
+	fflush(stdout);
+	return (0);
 }
 

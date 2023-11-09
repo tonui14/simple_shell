@@ -1,40 +1,45 @@
 #include "header.h"
 
-int main ()
-{       
-        char *in = NULL;
-        size_t len = 0;
+/**
+ * main - is the entry point
+ *
+ * Return: 0 upon successful execution
+ **/
 
-        ssize_t nread;
-        nread = getline(&in, &len, stdin);
+int main(void)
+{
+	char *in = NULL;
+	size_t len = 0;
 
-        while(nread == -1)
-        {
-                printf("\n");
-                free (in);
-                break;
-        }
-        if (in [nread -1] == '\n')
-        {
-                in [nread -1 ] = '\0';
-        }
-        pid_t baby_pid = fork();
-        if (baby_pid < 0)
-        {
-                perror ( "Fork unsuccessful");
-                exit(1);
-        }
-        else if(baby_pid == 0)
+	ssize_t nread;
+
+	nread = getline(&in, &len, stdin);
+
+	if (nread <= -1)
 	{
-		execlp (in, in, (char *) NULL);
-		perror("Failed to execute command");
-		exit (1);
+		if (feof(stdin))
+		{
+			printf("\n");
+		}
+		else
+		{
+			perror("No such file or directory");
+		}
+		free(in);
+		exit(1);
+	}
+	if (in[nread - 1] == '\n')
+	{
+		in[nread - 1] = '\0';
+	}
+	if (isatty(fileno(stdin)))
+	{
+		printf("Running in interactive mode\n");
 	}
 	else
 	{
-		int moment;
-		waitpid(baby_pid, &moment, 0);
+		printf("Running in non-interactive mode\n");
 	}
-	free (in);
+	free(in);
 	return (0);
 }
