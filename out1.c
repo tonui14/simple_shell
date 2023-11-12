@@ -2,20 +2,25 @@
 
 /**
  * main - is the entry point
+ * @ac: is the argument count
+ * @argv: is the pointer to the pointer of the argument vector
  *
  * Return: 0 upon successful execution
  **/
 
-int main(void)
+int main(int ac, char **argv)
 {
 	char *in = NULL;
 	size_t len = 0;
+
+	void(ac);
+	(void)argv;
 
 	ssize_t nread;
 
 	nread = getline(&in, &len, stdin);
 
-	if (nread <= -1)
+	if (nread <= 0)
 	{
 		if (feof(stdin))
 		{
@@ -40,6 +45,9 @@ int main(void)
 	{
 		printf("Running in non-interactive mode\n");
 	}
+
+	execute_command(in);
+
 	free(in);
 	return (0);
 }

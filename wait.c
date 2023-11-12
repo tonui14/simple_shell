@@ -1,25 +1,25 @@
 #include "header.h"
 
 /**
- * main - is the entry point
+ * execute_command - is the entry point
+ * @command: the command to be executed
  *
  * Return: 0 upon successful execution
  **/
 
-int main(void)
+void execute_command(const char *command)
 {
 	pid_t baby_pid = fork();
 
 	if (baby_pid < 0)
 	{
 		perror("Fork unsuccessful");
-		free(in);
 		exit(1);
 	}
 	else if (baby_pid == 0)
 	{
-		execlp(in, in, (char *)NULL);
-		perror("failed to execute command");
+		execlp(command, command, (char *)NULL);
+		perror("Failed to execute command");
 		exit(1);
 	}
 	else
@@ -28,6 +28,4 @@ int main(void)
 
 		waitpid(baby_pid, &status, 0);
 	}
-	free(in);
-	return (0);
 }
