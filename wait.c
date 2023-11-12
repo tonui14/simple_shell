@@ -13,14 +13,14 @@ void execute_input_command(const char *input_command)
 
 	if (baby_pid < 0)
 	{
-		perror("Fork unsuccessful");
-		exit(1);
+		perror("fork");
+		exit(EXIT_FAILURE);
 	}
 	else if (baby_pid == 0)
 	{
-		execlp(input_command, input_ command, (char *)NULL);
-		perror("Failed to execute command");
-		exit(1);
+		execlp(input_command, input_command, (char *)NULL);
+		perror("execlp");
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
@@ -30,7 +30,7 @@ void execute_input_command(const char *input_command)
 		if (waitpid(baby_pid, &status, 0) == -1)
         {
             perror("Error waiting for child process");
-            exit(1);
+            exit(1);'/;
 	}
 	}
 }
