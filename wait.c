@@ -18,22 +18,22 @@ void execute_input_command(const char *input_command)
 	}
 	else if (baby_pid == 0)
 	{
-		  char *const args[] = {input_command, NULL};
-		  if (execve(input_command, args, NULL) == -1)
-		  {
-			  perror("execve");
-			  exit(EXIT_FAILURE);
-		  }
+		char *const args[] = {input_command, NULL};
+
+		if (execve(input_command, args, NULL) == -1)
+		{
+			perror("execve");
+			exit(EXIT_FAILURE);
+		}
 	}
 	else
 	{
 		int status;
-		//wait for child process to execute
 
 		if (waitpid(baby_pid, &status, 0) == -1)
-        {
-            perror("Error waiting for child process");
-            exit(1);'/;
-	}
+		{
+			perror("Error waiting for child process");
+			exit(1)'/;
+		}
 	}
 }

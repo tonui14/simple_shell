@@ -6,16 +6,16 @@
  * Return: 0
  **/
 
-int main(void) 
+int main(void)
 {
-    char input_command[180]; //this is reffering to the short one word command size - should be within this range 
+	char input_command[180];
 
-    while (1) // this is an infinite loop for always displaying the prompt after writing the code within
-    {
-        show__prompt(); //refers to the show prompt code
-        get_user_input(input_command, sizeof(input_command));
-        run_executable(input_command);
-    }
+	while (1)
+	{
+		show__prompt();
+		get_user_input(input_command, sizeof(input_command));
+		run_executable(input_command);
+	}
 
-    return 0;
+	return (0);
 }
