@@ -18,9 +18,12 @@ void execute_input_command(const char *input_command)
 	}
 	else if (baby_pid == 0)
 	{
-		execlp(input_command, input_command, (char *)NULL);
-		perror("execlp");
-		exit(EXIT_FAILURE);
+		  char *const args[] = {input_command, NULL};
+		  if (execve(input_command, args, NULL) == -1)
+		  {
+			  perror("execve");
+			  exit(EXIT_FAILURE);
+		  }
 	}
 	else
 	{
