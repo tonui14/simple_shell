@@ -4,10 +4,9 @@
  * show_prompt - is a function used to show the prompt
  *
  **/
-
 void show_prompt(void)
 {
 	char *prompt = "(shell)$";
 	printf("%s", prompt);
-	return (0);
+	fflush(stdout);
 }
