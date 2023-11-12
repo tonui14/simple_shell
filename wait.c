@@ -1,13 +1,13 @@
 #include "header.h"
 
 /**
- * execute_command - is the entry point
- * @command: the command to be executed
+ * execute_input_command - executes input command
+ * @input_command: the command to be executed
  *
  * Return: 0 upon successful execution
  **/
 
-void execute_command(const char *command)
+void execute_input_command(const char *input_command)
 {
 	pid_t baby_pid = fork();
 
@@ -18,14 +18,19 @@ void execute_command(const char *command)
 	}
 	else if (baby_pid == 0)
 	{
-		execlp(command, command, (char *)NULL);
+		execlp(input_command, input_ command, (char *)NULL);
 		perror("Failed to execute command");
 		exit(1);
 	}
 	else
 	{
 		int status;
+		//wait for child process to execute
 
-		waitpid(baby_pid, &status, 0);
+		if (waitpid(baby_pid, &status, 0) == -1)
+        {
+            perror("Error waiting for child process");
+            exit(1);
+	}
 	}
 }
