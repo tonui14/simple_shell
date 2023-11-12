@@ -8,7 +8,7 @@
 
 int main(void) 
 {
-    char input_command[128]; //this is reffering to the short one word command size - should be within this range 
+    char input_command[180]; //this is reffering to the short one word command size - should be within this range 
 
     while (1) // this is an infinite loop for always displaying the prompt after writing the code within
     {
