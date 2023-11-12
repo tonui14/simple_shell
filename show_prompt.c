@@ -7,5 +7,7 @@
 
 void show_prompt(void)
 {
-    printf("shell$$ ");
+	char *prompt = "(shell)$";
+	printf("%s", prompt);
+	return (0);
 }
