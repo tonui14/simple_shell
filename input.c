@@ -1,9 +1,12 @@
 #include "header.h"
 
 /**
- * get_user_input - is used to read the user input
- *@input_command: Command to be input
- **/
+ * get_user_input - Reads user input from the standard input.
+ * @cmd: Buffer to store the input command.
+ *
+ *
+ * Return: On success, the number of characters read. Otherwise -1
+ */
 
 ssize_t get_user_input(char *cmd)
 {
