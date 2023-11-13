@@ -5,25 +5,13 @@
  *@input_command: Command to be input
  **/
 
-void get_user_input(char **input_command, size_t *size)
+ssize_t get_user_input(char *cmd)
 {
+	size_t size = 0;
 	ssize_t read;
 
-	read = getline(input_command, size, stdin);
+	read = getline(&cmd, &size, stdin);
 
-	if (read == -1)
-	{
-		if (feof(stdin))
-		{
-			printf("\n");
-			exit(EXIT_SUCCESS);
-		}
-		else
-		{
-			perror("Error reading input");
-			exit(EXIT_FAILURE);
-		}
-	}
+	return (read);
 
-	(*input_command)[read - 1] = '\0';
 }

@@ -6,8 +6,7 @@
  **/
 void show_prompt(void)
 {
-	char *prompt = "(shell)$";
+	char *prompt = "$ ";
 
-	printf("%s", prompt);
-	fflush(stdout);
+	write(STDOUT_FILENO, prompt, 2);
 }

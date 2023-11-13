@@ -17,6 +17,6 @@ void shell_interactive(void);
 void shell_non_interactive (void);
 void execute_input_command(const char *input_command);
 void show_prompt(void);
-void get_user_input(char **input_command, size_t *size);
+ssize_t get_user_input(char *cmd);
 void run_executable(const char *input_command);
 #endif

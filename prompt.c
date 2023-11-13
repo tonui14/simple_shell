@@ -8,13 +8,15 @@
 
 int main(void)
 {
-	char input_command[180];
+	char *cmd = 0;
+	ssize_t command;
 
 	while (1)
 	{
 		show_prompt();
-		get_user_input(&input_command, sizeof(input_command));
-		run_executable(input_command);
+		command = get_user_input(cmd);
+		printf("%ld", command);
+		/*run_executable(input_command);*/
 	}
 
 	return (0);
