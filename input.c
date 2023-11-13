@@ -5,12 +5,13 @@
  *@input_command: Command to be input
  **/
 
-void get_user_input(char **input_command)
+void get_user_input(char **input_command, size_t *size)
 {
-	size_t size = 0;
 	ssize_t read;
 
-	if ((read == getline(command, &size, stdin)) == -1)
+	read = getline(input_command, size, stdin);
+
+	if (read == -1)
 	{
 		if (feof(stdin))
 		{

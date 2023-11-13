@@ -18,13 +18,44 @@ void execute_input_command(const char *input_command)
 	}
 	else if (baby_pid == 0)
 	{
-		char *const args[] = {input_command, NULL};
+		 char *token;
+		 int i = 0;
+		 char *delim = " ";
+		 char **args = malloc(sizeof(char *));
 
-		if (execve(input_command, args, NULL) == -1)
+		 if (args == NULL)
+		 {
+			 perror("malloc");
+			 exit(EXIT_FAILURE);
+		 }
+		 token = strtok((char *)input_command, delim);
+		
+
+		while (token != NULL)
+		{
+			args = realloc(args, (i + 1) * sizeof(char *));
+			if (args == NULL)
+			{
+				perror("realloc");
+				exit(EXIT_FAILURE);
+			}
+			args[i++] = token;
+			token = strtok (NULL, delim);
+		}
+		args = realloc(args, (i + 1) * sizeof(char *));
+		if (args == NULL)
+		{
+			perror("realloc");
+			exit(EXIT_FAILURE);
+		}
+		args[i] = NULL;
+
+		if (execve(args[0], args, NULL) == -1)
 		{
 			perror("execve");
 			exit(EXIT_FAILURE);
 		}
+		free(args);
 	}
 	else
 	{
@@ -33,7 +64,7 @@ void execute_input_command(const char *input_command)
 		if (waitpid(baby_pid, &status, 0) == -1)
 		{
 			perror("Error waiting for child process");
-			exit(1)'/;
+			exit(EXIT_FAILURE);
 		}
 	}
 }

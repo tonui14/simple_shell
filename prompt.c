@@ -12,8 +12,8 @@ int main(void)
 
 	while (1)
 	{
-		show__prompt();
-		get_user_input(input_command, sizeof(input_command));
+		show_prompt();
+		get_user_input(&input_command, sizeof(input_command));
 		run_executable(input_command);
 	}
 
