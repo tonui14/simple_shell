@@ -18,18 +18,18 @@ void execute_input_command(const char *input_command)
 	}
 	else if (baby_pid == 0)
 	{
-		 char *token;
-		 int i = 0;
-		 char *delim = " ";
-		 char **args = malloc(sizeof(char *));
+		char *token;
+		int i = 0;
+		char *delim = " ";
+		char **args = malloc(sizeof(char *));
 
-		 if (args == NULL)
-		 {
-			 perror("malloc");
-			 exit(EXIT_FAILURE);
-		 }
-		 token = strtok((char *)input_command, delim);
-		
+		if (args == NULL)
+		{
+			perror("malloc");
+			exit(EXIT_FAILURE);
+		}
+		token = strtok((char *)input_command, delim);
+
 
 		while (token != NULL)
 		{
@@ -40,7 +40,7 @@ void execute_input_command(const char *input_command)
 				exit(EXIT_FAILURE);
 			}
 			args[i++] = token;
-			token = strtok (NULL, delim);
+			token = strtok(NULL, delim);
 		}
 		args = realloc(args, (i + 1) * sizeof(char *));
 		if (args == NULL)
