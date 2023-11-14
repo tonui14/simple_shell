@@ -6,18 +6,51 @@
  * Return: 0
  **/
 
-int main(void)
+int main(int argc, char **argv, char *envp[])
 {
-	char *cmd = 0;
-	ssize_t command;
+	char *input = NULL;
+	char **command;
+	(void)argc;
+	(void)argv;
 
 	while (1)
 	{
 		show_prompt();
-		command = get_user_input(cmd);
-		printf("%ld", command);
-		/*run_executable(input_command);*/
+		input = get_user_input();
+		command = tokenize_input(input);
+		execute_input(command, envp);
 	}
 
 	return (0);
+}
+
+int execute_input(char **command, char *envp[])
+{
+	pid_t baby_pid;
+	int status;
+
+	baby_pid = fork();
+
+	if (baby_pid < 0)
+	{
+		perror("fork");
+		
+	}
+	else if (baby_pid == 0)
+	{
+	
+		if (execve(command[0], command, envp) == -1);
+		{
+			perror("execve");
+			exit(0);
+		}
+	}
+	else 
+	{
+		waitpid(baby_pid, NULL, 0);
+	}
+	free(command);
+	command == NULL;
+	return (status);
+
 }
