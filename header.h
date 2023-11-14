@@ -13,11 +13,10 @@
 #include <unistd.h>
 #include <errno.h>
 
-void shell_interactive(void);
-void shell_non_interactive(void);
-void execute_input_command(const char *input_command);
 void show_prompt(void);
-ssize_t get_user_input(char *cmd);
+char *get_user_input(void);
 void run_executable(const char *input_command);
-
+char **tokenize_input(char *input);
+int execute_input(char **command, char *envp[]);
 #endif
+

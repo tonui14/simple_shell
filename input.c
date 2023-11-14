@@ -11,7 +11,7 @@ char *get_user_input(void)
 {
 	char *cmd = NULL;
 	size_t size = 0;
-	ssize_t read;
+	/*ssize_t read;*/
 
 	read = getline(&cmd, &size, stdin);
 
