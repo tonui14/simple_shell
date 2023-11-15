@@ -15,7 +15,6 @@
 
 void show_prompt(void);
 char *get_user_input(void);
-void run_executable(const char *input_command);
 char **tokenize_input(char *input);
 int execute_input(char **command, char *envp[]);
 #endif
