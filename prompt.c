@@ -27,7 +27,7 @@ int main(int argc, char **argv, char *envp[])
 int execute_input(char **command, char *envp[])
 {
 	pid_t baby_pid;
-	int status;
+	int status = 0;
 
 	baby_pid = fork();
 
@@ -39,7 +39,7 @@ int execute_input(char **command, char *envp[])
 	else if (baby_pid == 0)
 	{
 	
-		if (execve(command[0], command, envp) == -1);
+		if (execve(command[0], command, envp) == -1)
 		{
 			perror("execve");
 			exit(0);
@@ -50,7 +50,6 @@ int execute_input(char **command, char *envp[])
 		waitpid(baby_pid, NULL, 0);
 	}
 	free(command);
-	command == NULL;
 	return (status);
 
 }
