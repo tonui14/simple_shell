@@ -1,16 +1,17 @@
 #include "header.h"
 
 /**
- * 
- **/
+ * tokenize_input - Function to tokenize input.
+ * @input: The input string to be tokenized.
+ * Return: An array of tokens.
+ */
 
 char **tokenize_input(char *input)
 {
 	char *token;
 	char *temp = NULL;
 	char **buff;
- 	int i = 0, counter = 0;
-
+	int i = 0, counter = 0;
 
 	if (!input)
 		return (NULL);
@@ -37,11 +38,11 @@ char **tokenize_input(char *input)
 	token = strtok(input, " \n\t");
 	while (token != NULL)
 	{
-		buff[i]= token;
+		buff[i] = token;
 		token = strtok(NULL, " \n\t");
 		i++;
 	}
-	buff[i]= NULL;
+	buff[i] = NULL;
 	return (buff);
 
 }
