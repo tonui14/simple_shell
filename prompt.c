@@ -41,7 +41,7 @@ int execute_input(char **command, char *envp[])
 
 	if (baby_pid < 0)
 	{
-		perror("fork")
+		perror("fork");
 	}
 	else if (baby_pid == 0)
 	{
